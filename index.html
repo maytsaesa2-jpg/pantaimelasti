@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pantai Melasti Bali | Surga Tersembunyi</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue: #0879bd;
+  --dark: #07385c;
+  --light: #eaf8ff;
+  --white: #fff;
+  --text: #294b65;
+}
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+body { font-family:'Poppins',sans-serif; color:var(--text); background:#fff; }
+a { text-decoration:none; color:inherit; }
+button { font:inherit; cursor:pointer; }
+nav {
+  position:fixed; top:0; left:0; width:100%; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 7%; color:white; transition:.3s;
+}
+nav.scrolled { background:rgba(4,49,83,.96); padding:13px 7%; box-shadow:0 4px 20px #00334b30; }
+.logo { font-size:19px; font-weight:800; line-height:1.1; }
+.logo span { display:block; font-size:10px; letter-spacing:5px; margin-top:5px; }
+.navlinks { display:flex; gap:25px; align-items:center; font-size:13px; }
+.navlinks a:hover { color:#a9e9ff; }
+.navbtn {
+  border:0; border-radius:30px; padding:11px 20px;
+  background:white; color:var(--blue); font-weight:700;
+}
+.menu-toggle { display:none; background:none; border:0; color:white; font-size:27px; }
+
+.hero {
+  min-height:680px; display:flex; align-items:center;
+  padding:120px 8% 75px; color:white; position:relative;
+  background:linear-gradient(90deg,#00375ac9 0%,#005c8a65 52%,#003e5b0a 100%),
+  url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=2000&q=85') center/cover;
+}
+.hero-content { max-width:610px; position:relative; z-index:1; }
+.eyebrow { letter-spacing:3px; font-size:12px; font-weight:600; text-transform:uppercase; }
+.hero h1 {
+  font-family:'Playfair Display',serif; font-size:clamp(43px,7vw,78px);
+  line-height:1.12; margin:20px 0;
+}
+.hero h1 span { color:#a8edff; }
+.hero p { line-height:1.9; font-size:15px; max-width:500px; }
+.btn {
+  display:inline-block; margin-top:27px; border:0; border-radius:30px;
+  padding:14px 25px; font-weight:700; transition:.3s;
+}
+.btn-primary { background:#fff; color:var(--blue); }
+.btn:hover { transform:translateY(-3px); box-shadow:0 8px 22px #002e4a35; }
+.hero-note { margin-top:35px; font-size:12px; opacity:.9; }
+
+section { padding:85px 8%; }
+.section-heading { text-align:center; margin-bottom:45px; }
+.section-heading small { color:var(--blue); letter-spacing:3px; font-weight:700; }
+.section-heading h2 {
+  font:700 clamp(29px,4vw,43px) 'Playfair Display',serif;
+  color:var(--dark); margin:12px 0;
+}
+.section-heading p { max-width:650px; margin:auto; font-size:14px; line-height:1.8; }
+
+.about { display:grid; grid-template-columns:1fr 1fr; gap:55px; align-items:center; }
+.about-image { position:relative; }
+.about-image img {
+  width:100%; height:420px; object-fit:cover; border-radius:100px 15px 100px 15px;
+}
+.image-tag {
+  position:absolute; bottom:22px; left:22px; background:white;
+  padding:15px 20px; border-radius:12px; color:var(--dark);
+  box-shadow:0 5px 25px #003b5c25; font-size:13px; font-weight:700;
+}
+.about h2 { font:700 36px 'Playfair Display',serif; color:var(--dark); margin:15px 0; }
+.about p { font-size:14px; line-height:2; margin-bottom:17px; }
+.facts { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:25px; }
+.fact { background:var(--light); padding:17px; border-radius:14px; }
+.fact strong { display:block; color:var(--blue); font-size:14px; margin-bottom:5px; }
+.fact span { font-size:12px; }
+
+.attractions { background:linear-gradient(180deg,#effaff,#fff); }
+.cards { display:grid; grid-template-columns:repeat(3,1fr); gap:23px; }
+.card {
+  background:white; border-radius:18px; overflow:hidden;
+  box-shadow:0 7px 28px #0c5b7c12; transition:.3s;
+}
+.card:hover { transform:translateY(-8px); box-shadow:0 15px 35px #0c5b7c20; }
+.card img { width:100%; height:220px; object-fit:cover; display:block; }
+.card-content { padding:22px; }
+.card-content .emoji { font-size:27px; }
+.card h3 { color:var(--dark); margin:10px 0; font-size:17px; }
+.card p { font-size:13px; line-height:1.8; }
+
+.gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.gallery-grid img {
+  width:100%; height:230px; object-fit:cover; border-radius:15px;
+  cursor:pointer; transition:.3s;
+}
+.gallery-grid img:hover { transform:scale(1.025); filter:brightness(.85); }
+
+.tips { background:var(--light); }
+.tips-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.tip {
+  background:white; padding:27px; border-radius:17px;
+  border-bottom:4px solid #60c8ee;
+}
+.tip .emoji { font-size:32px; }
+.tip h3 { color:var(--dark); margin:14px 0 10px; }
+.tip p { font-size:13px; line-height:1.9; }
+
+.location {
+  display:grid; grid-template-columns:1fr 1fr; gap:35px; align-items:center;
+}
+.location h2 { font:700 36px 'Playfair Display',serif; color:var(--dark); margin:15px 0; }
+.location p { font-size:14px; line-height:2; }
+.location-box { padding:28px; border-radius:18px; background:#f0faff; }
+.location-box h3 { color:var(--dark); margin-bottom:12px; }
+.location-box p { margin-bottom:15px; }
+.location-box a { color:var(--blue); font-weight:700; }
+
+.cta {
+  margin:25px 8% 85px; padding:65px 25px; text-align:center;
+  border-radius:25px; color:white;
+  background:linear-gradient(120deg,#03456d,#0799cf);
+}
+.cta h2 { font:700 36px 'Playfair Display',serif; margin-bottom:15px; }
+.cta p { font-size:14px; line-height:1.8; }
+.cta .btn { color:var(--blue); }
+
+footer { background:#062f4c; color:white; padding:45px 8% 25px; }
+.footer-top { display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; }
+footer p { font-size:12px; line-height:1.9; opacity:.8; max-width:350px; margin-top:13px; }
+.footer-links { display:flex; flex-wrap:wrap; gap:20px; font-size:13px; }
+.footer-links a:hover { color:#9ee9ff; }
+.copyright { border-top:1px solid #ffffff25; margin-top:30px; padding-top:20px; text-align:center; font-size:11px; opacity:.7; }
+
+.lightbox {
+  display:none; position:fixed; inset:0; z-index:200;
+  background:#001b2eef; align-items:center; justify-content:center; padding:20px;
+}
+.lightbox.show { display:flex; }
+.lightbox img { max-width:95%; max-height:85vh; border-radius:12px; }
+.close-lightbox {
+  position:absolute; top:20px; right:30px; border:0; background:none;
+  color:white; font-size:40px;
+}
+.reveal { opacity:0; transform:translateY(25px); transition:.7s; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@media(max-width:850px) {
+  .navlinks {
+    display:none; position:absolute; top:65px; left:5%; width:90%;
+    background:#07385c; border-radius:15px; padding:22px;
+    flex-direction:column; align-items:stretch; gap:20px;
+  }
+  .navlinks.open { display:flex; }
+  .menu-toggle { display:block; }
+  .about,.location { grid-template-columns:1fr; }
+  .cards,.tips-grid { grid-template-columns:repeat(2,1fr); }
+  .gallery-grid { grid-template-columns:repeat(2,1fr); }
+  .hero { min-height:650px; }
+}
+@media(max-width:520px) {
+  section { padding:65px 6%; }
+  nav { padding:17px 6%; }
+  .hero { padding:110px 6% 65px; min-height:650px; }
+  .hero p { font-size:13px; }
+  .cards,.tips-grid { grid-template-columns:1fr; }
+  .gallery-grid img { height:160px; }
+  .about-image img { height:310px; }
+  .facts { gap:10px; }
+  .about h2,.location h2 { font-size:30px; }
+  .cta { margin:10px 6% 60px; padding:45px 20px; }
+  .cta h2 { font-size:28px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+  <a href="#beranda" class="logo">🌴 MELASTI <span>BALI • INDONESIA</span></a>
+  <div class="navlinks" id="navlinks">
+    <a href="#beranda">Beranda</a>
+    <a href="#tentang">Tentang</a>
+    <a href="#wisata">Daya Tarik</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#tips">Tips Wisata</a>
+    <a href="#lokasi">Lokasi</a>
+  </div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+</nav>
+
+<header class="hero" id="beranda">
+  <div class="hero-content">
+    <div class="eyebrow">✦ Surga Tersembunyi di Bali Selatan ✦</div>
+    <h1>Pesona <span>Pantai</span><br>Melasti Bali</h1>
+    <p>
+      Temukan keindahan pasir putih, air laut biru jernih,
+      dan tebing kapur megah yang menciptakan panorama
+      luar biasa di salah satu pantai memesona di Bali.
+    </p>
+    <a href="#tentang" class="btn btn-primary">Jelajahi Keindahan ↓</a>
+    <div class="hero-note">☀️ Alam yang indah • 🌊 Laut yang memesona • 🌴 Bali yang istimewa</div>
+  </div>
+</header>
+
+<section id="tentang">
+  <div class="about reveal">
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=900&q=85" alt="Pemandangan tropis Bali">
+      <div class="image-tag">♡ Keindahan Alam Bali</div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:#0879bd">TENTANG PANTAI MELASTI</div>
+      <h2>Keindahan Alam yang Memikat Hati</h2>
+      <p>
+        Pantai Melasti terletak di kawasan Ungasan, Kuta Selatan,
+        Kabupaten Badung, Bali. Pantai ini dikenal dengan pasir
+        putihnya, air laut berwarna biru kehijauan, serta tebing
+        kapur yang menjulang di sepanjang pesisir.
+      </p>
+      <p>
+        Perjalanan menuju pantai menawarkan pemandangan jalan
+        berkelok di antara tebing yang megah. Suasana alamnya
+        menjadikan Pantai Melasti tempat yang menarik untuk
+        menikmati pemandangan, berfoto, dan bersantai.
+      </p>
+      <div class="facts">
+        <div class="fact"><strong>📍 Lokasi</strong><span>Ungasan, Bali Selatan</span></div>
+        <div class="fact"><strong>🏖️ Daya Tarik</strong><span>Pasir putih dan laut biru</span></div>
+        <div class="fact"><strong>📷 Aktivitas</strong><span>Fotografi dan wisata alam</span></div>
+        <div class="fact"><strong>🌅 Momen Favorit</strong><span>Pagi dan sore hari</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="attractions" id="wisata">
+  <div class="section-heading reveal">
+    <small>EXPLORE THE BEAUTY</small>
+    <h2>Daya Tarik Pantai Melasti</h2>
+    <p>Setiap sudutnya menawarkan pengalaman alam yang indah dan momen liburan yang berkesan.</p>
+  </div>
+  <div class="cards">
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=85" alt="Pantai dengan laut biru">
+      <div class="card-content"><div class="emoji">🌊</div><h3>Laut Biru yang Memesona</h3><p>Nikmati perpaduan warna laut biru dan ombak yang menghadirkan pemandangan menenangkan.</p></div>
+    </article>
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=85" alt="Pasir putih di pantai">
+      <div class="card-content"><div class="emoji">🏖️</div><h3>Hamparan Pasir Putih</h3><p>Bersantai di pesisir sambil menikmati angin laut dan suasana pantai tropis.</p></div>
+    </article>
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=85" alt="Pemandangan alam pesisir">
+      <div class="card-content"><div class="emoji">⛰️</div><h3>Tebing Kapur Megah</h3><p>Tebing tinggi dan jalan berkelok menciptakan lanskap yang unik untuk dinikmati.</p></div>
+    </article>
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=85" alt="Pemandangan pesisir untuk fotografi">
+      <div class="card-content"><div class="emoji">📸</div><h3>Spot Foto Menawan</h3><p>Abadikan momen liburan dengan latar laut, pantai, dan pemandangan alam.</p></div>
+    </article>
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=85" alt="Ombak laut">
+      <div class="card-content"><div class="emoji">🐚</div><h3>Suasana Menenangkan</h3><p>Dengarkan deburan ombak dan nikmati waktu istirahat jauh dari kesibukan.</p></div>
+    </article>
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=85" alt="Pemandangan matahari sore">
+      <div class="card-content"><div class="emoji">🌅</div><h3>Menikmati Senja</h3><p>Pilih waktu sore untuk menikmati suasana pantai dan cahaya matahari yang hangat.</p></div>
+    </article>
+  </div>
+</section>
+
+<section id="galeri">
+  <div class="section-heading reveal">
+    <small>MELASTI PHOTO COLLECTION</small>
+    <h2>Galeri Keindahan</h2>
+    <p>Jelajahi inspirasi pemandangan pantai yang cocok untuk mengisi album liburanmu.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=85" alt="Laut tropis" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=700&q=85" alt="Pasir pantai" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=700&q=85" alt="Ombak laut" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=85" alt="Pesisir tropis" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=700&q=85" alt="Lanskap Bali" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=85" alt="Suasana pulau Bali" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=85" alt="Lanskap alam" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=85" alt="Pemandangan senja" loading="lazy">
+  </div>
+</section>
+
+<section class="tips" id="tips">
+  <div class="section-heading reveal">
+    <small>TRAVEL GUIDE</small>
+    <h2>Tips Sebelum Berkunjung</h2>
+    <p>Persiapkan perjalananmu agar pengalaman menikmati Pantai Melasti semakin nyaman.</p>
+  </div>
+  <div class="tips-grid">
+    <div class="tip reveal"><div class="emoji">🧴</div><h3>Bawa Perlengkapan</h3><p>Gunakan tabir surya, topi, air minum, dan alas kaki yang nyaman untuk aktivitas di pantai.</p></div>
+    <div class="tip reveal"><div class="emoji">⏰</div><h3>Pilih Waktu yang Tepat</h3><p>Datang pagi atau sore hari untuk menikmati suasana yang lebih nyaman. Periksa cuaca sebelum berangkat.</p></div>
+    <div class="tip reveal"><div class="emoji">♻️</div><h3>Jaga Kebersihan</h3><p>Bawa kembali sampahmu, hormati alam sekitar, dan patuhi petunjuk keselamatan dari pengelola.</p></div>
+  </div>
+</section>
+
+<section id="lokasi">
+  <div class="location reveal">
+    <div>
+      <div class="eyebrow" style="color:#0879bd">FIND YOUR PARADISE</div>
+      <h2>Temukan Pantai Melasti</h2>
+      <p>
+        Pantai Melasti berada di Desa Ungasan, Kecamatan Kuta Selatan,
+        Kabupaten Badung, Bali. Kamu dapat menuju kawasan ini
+        menggunakan kendaraan pribadi atau transportasi wisata.
+      </p>
+      <p style="margin-top:12px">📍 Ungasan, Kuta Selatan, Badung, Bali, Indonesia</p>
+      <a class="btn btn-primary" style="background:#0879bd;color:white" href="https://www.google.com/maps/search/?api=1&query=Pantai+Melasti+Bali" target="_blank" rel="noopener">Buka Google Maps ↗</a>
+    </div>
+    <div class="location-box">
+      <h3>🧳 Checklist Liburan</h3>
+      <p>☑️ Kamera atau ponsel untuk foto</p>
+      <p>☑️ Tabir surya dan topi</p>
+      <p>☑️ Air minum yang cukup</p>
+      <p>☑️ Pakaian yang nyaman</p>
+      <p>☑️ Uang untuk tiket masuk dan parkir</p>
+      <p style="font-size:12px">Catatan: biaya masuk, jam operasional, dan kondisi pantai dapat berubah. Periksa informasi terbaru sebelum berkunjung.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta reveal">
+  <h2>Waktunya Menjelajahi Bali! 🌴</h2>
+  <p>Rasakan keindahan alam Pantai Melasti dan ciptakan kenangan liburan yang tak terlupakan.</p>
+  <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Pantai+Melasti+Bali" target="_blank" rel="noopener">Rencanakan Perjalanan ↗</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#beranda" class="logo">🌴 PANTAI MELASTI <span>BALI • INDONESIA</span></a>
+      <p>Pesona alam Bali Selatan dengan laut biru, pasir putih, dan tebing kapur yang memukau.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#beranda">Beranda</a><a href="#tentang">Tentang</a>
+      <a href="#wisata">Wisata</a><a href="#galeri">Galeri</a>
+      <a href="#tips">Tips</a><a href="#lokasi">Lokasi</a>
+    </div>
+  </div>
+  <div class="copyright">© <span id="year"></span> Pantai Melasti Bali. Dibuat dengan 💙 untuk keindahan Indonesia.</div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Pratinjau foto">
+  <button class="close-lightbox" id="closeLightbox" aria-label="Tutup foto">×</button>
+  <img id="lightboxImage" src="" alt="Foto pantai dalam ukuran besar">
+</div>
+
+<script>
+const navbar = document.getElementById('navbar');
+const menuToggle = document.getElementById('menuToggle');
+const navlinks = document.getElementById('navlinks');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+menuToggle.addEventListener('click', () => {
+  navlinks.classList.toggle('open');
+  menuToggle.textContent = navlinks.classList.contains('open') ? '✕' : '☰';
+});
+
+navlinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navlinks.classList.remove('open');
+    menuToggle.textContent = '☰';
+  });
+});
+
+// Animasi saat bagian website muncul di layar
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Galeri dapat diklik untuk memperbesar foto
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+
+document.querySelectorAll('.gallery-grid img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImage.src = img.src;
+    lightboxImage.alt = img.alt;
+    lightbox.classList.add('show');
+  });
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('show');
+  lightboxImage.src = '';
+}
+
+document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', event => {
+  if (event.target === lightbox) closeLightbox();
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeLightbox();
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
